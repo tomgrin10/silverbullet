@@ -62,6 +62,12 @@ Chromium contexts emulate Android touch; Firefox and WebKit verify layout and
 desktop input. These are browser-engine tests, not a
 physical Android keyboard test.
 
+Headless WebKit can report a file-list Offline rejection or an aborted-read
+access-control warning during reload. Both reproduce with unmodified 2.10.0.
+The suite allows only those known messages after reload, while still checking
+the saved source against the backend and reloaded document byte-for-byte.
+Other browser errors fail the suite.
+
 Run only against a disposable SilverBullet instance containing
 `fixtures/RTL-QA.md`; the script verifies its fixture marker before editing.
 Build `Dockerfile.qa`, mount a private screenshot directory writable by UID
