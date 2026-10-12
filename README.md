@@ -5,6 +5,9 @@
 [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/silverbulletmd/silverbullet)
 
 # SilverBullet
+
+This fork adds Hebrew/Arabic and mixed-language Markdown editing on the
+`rtl-markdown` branch. See [RTL changes and deployment](docs/RTL.md).
 SilverBullet is a Programmable, Private, Browser-based, Open Source, Self Hosted, Personal Knowledge Database — a fancy term for a "notes app on steroids".
 
 _Yowza!_ That surely is a lot of adjectives to describe a browser-based Markdown editor programmable with Lua.

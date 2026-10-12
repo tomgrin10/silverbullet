@@ -1,4 +1,5 @@
 import { parseToRef } from "@silverbulletmd/silverbullet/lib/ref";
+import { applyRenderedDirections } from "../text_direction.ts";
 import type { Client } from "../client.ts";
 import type { EventPayLoad } from "./lua_widget.ts";
 import {
@@ -68,6 +69,7 @@ export function attachWidgetEventHandlers(
   widgetText?: string,
   events?: Record<string, (event: EventPayLoad) => void>,
 ) {
+  applyRenderedDirections(div);
   if (!div.dataset.handlersAttached) {
     div.dataset.handlersAttached = "true";
     div.addEventListener("mousedown", (e) => {

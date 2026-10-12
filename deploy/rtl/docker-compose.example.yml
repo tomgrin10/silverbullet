@@ -1,0 +1,23 @@
+services:
+  silverbullet:
+    image: ghcr.io/silverbulletmd/silverbullet:2.10.0
+    restart: unless-stopped
+    volumes:
+      - ./space:/space
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://127.0.0.1:3000/.instance"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+  silverbullet-ui:
+    image: personal-pi-silverbullet-rtl:2.10.0
+    build: .
+    restart: unless-stopped
+    init: true
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    depends_on:
+      silverbullet:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:3005:8080"

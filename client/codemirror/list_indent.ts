@@ -49,7 +49,7 @@ export function listIndentPlugin() {
         const startLine = doc.lineAt(from);
         const width = computeMarkerWidth(node, startLine.from);
         if (width <= 0) return;
-        const styleAttr = `padding-left:${width}ch;text-indent:-${width}ch`;
+        const styleAttr = `padding-inline-start:${width}ch;text-indent:-${width}ch`;
         const endLine = doc.lineAt(to);
         for (
           let lineNo = startLine.number;

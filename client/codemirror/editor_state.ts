@@ -1,3 +1,4 @@
+import { bidirectionalMarkdown } from "./bidi.ts";
 import customMarkdownStyle from "../style.ts";
 import { history, insertNewlineAndIndent } from "@codemirror/commands";
 import {
@@ -173,6 +174,7 @@ export function createEditorState(
       indentOnInput(),
       ...cleanModePlugins(client),
       EditorView.lineWrapping,
+      bidirectionalMarkdown(),
       plugLinter(client),
       drawSelection(),
       postScriptPrefacePlugin(client),
@@ -229,7 +231,7 @@ export function createEditorState(
                 pos: pos,
               };
 
-              const distanceX = touch.clientX - view.coordsAtPos(pos)!.left;
+              const distanceX = Math.abs(touch.clientX - view.coordsAtPos(pos)!.left);
               // What we're trying to determine here is if the tap occured anywhere near the looked up position
               // this may not be the case with locations that expand signifcantly based on live preview (such as links), we don't want any accidental clicks
               // Fixes #585
@@ -278,7 +280,7 @@ export function createEditorState(
               }
             }
 
-            const distanceX = event.x - view.coordsAtPos(pos)!.left;
+            const distanceX = Math.abs(event.x - view.coordsAtPos(pos)!.left);
             // What we're trying to determine here is if the click occured anywhere near the looked up position
             // this may not be the case with locations that expand signifcantly based on live preview (such as links), we don't want any accidental clicks
             // Fixes #357
